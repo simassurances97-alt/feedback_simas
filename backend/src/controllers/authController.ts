@@ -53,21 +53,26 @@ export async function loginController(req: Request, res: Response) {
 }
 
 export async function registerController(req: Request, res: Response) {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
-    return res.status(400).json({ message: 'Name, email and password are required' });
+  try {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email and password are required' });
+    }
+
+    const existing = await query('SELECT id FROM employees WHERE email = $1', [email]);
+    if (existing.rows.length > 0) {
+      return res.status(409).json({ message: 'Email already exists' });
+    }
+
+    const passwordHash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS ?? 12));
+    const result = await query(
+      'INSERT INTO employees(name, email, password_hash, role) VALUES($1, $2, $3, $4) RETURNING id',
+      [name.trim(), email.trim().toLowerCase(), passwordHash, 'user']
+    );
+
+    return res.status(201).json({ message: 'Compte créé', userId: result.rows[0].id });
+  } catch (error) {
+    console.error('Erreur dans registerController :', error);
+    return res.status(500).json({ message: 'Impossible de créer le compte. Vérifiez les informations.' });
   }
-
-  const existing = await query('SELECT id FROM employees WHERE email = $1', [email]);
-  if (existing.rows.length > 0) {
-    return res.status(409).json({ message: 'Email already exists' });
-  }
-
-  const passwordHash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS ?? 12));
-  const result = await query(
-    'INSERT INTO employees(name, email, password_hash, role) VALUES($1, $2, $3, $4) RETURNING id',
-    [name.trim(), email.trim().toLowerCase(), passwordHash, 'user']
-  );
-
-  return res.status(201).json({ message: 'Compte créé', userId: result.rows[0].id });
 }

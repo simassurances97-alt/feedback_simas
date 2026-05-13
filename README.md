@@ -157,13 +157,25 @@ CREATE TABLE feedbacks (
 
 ### Installation rapide
 
-1. **Cloner le repository**
+1. **Installer PostgreSQL**
    ```bash
-   git clone https://github.com/sim-assurances/feedback-app.git
-   cd feedback-app
+   # Windows - Télécharger depuis https://www.postgresql.org/download/windows/
+   # Ou via Chocolatey : choco install postgresql
    ```
 
-2. **Installer les dépendances**
+2. **Configurer la base de données**
+   ```bash
+   # Exécuter le script de configuration
+   ./setup-database.ps1
+
+   # Ou manuellement :
+   createdb -U postgres feedback_app
+   psql -U postgres -c "CREATE USER feedback_user WITH PASSWORD 'feedback_password';"
+   psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE feedback_app TO feedback_user;"
+   psql -U postgres -d feedback_app -f database/init.sql
+   ```
+
+3. **Installer les dépendances**
    ```bash
    # Backend
    cd backend
@@ -172,16 +184,6 @@ CREATE TABLE feedbacks (
    # Frontend
    cd ../frontend
    npm install
-   ```
-
-3. **Configuration de la base de données**
-   ```bash
-   # Créer la base de données
-   createdb feedback_app
-
-   # Exécuter les migrations
-   cd backend
-   npm run migrate
    ```
 
 4. **Démarrer l'application**
@@ -193,6 +195,17 @@ CREATE TABLE feedbacks (
    cd ../frontend
    npm start
    ```
+
+### Voir le contenu de la base de données
+
+```bash
+# Exécuter le script de visualisation
+./view-database.ps1
+
+# Ou manuellement :
+psql -U postgres -d feedback_app -c "SELECT * FROM employees;"
+psql -U postgres -d feedback_app -c "SELECT * FROM feedbacks;"
+```
 
 ### Installation avec Docker
 

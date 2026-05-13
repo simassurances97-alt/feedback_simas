@@ -19,6 +19,16 @@ CREATE TABLE IF NOT EXISTS feedbacks (
   is_moderated BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  action VARCHAR(100) NOT NULL,
+  user_id UUID REFERENCES employees(id) ON DELETE SET NULL,
+  target_table VARCHAR(100) NOT NULL,
+  target_id UUID,
+  details JSONB,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Exemple de comptes
 INSERT INTO employees (name, email, password_hash, role)
 VALUES
