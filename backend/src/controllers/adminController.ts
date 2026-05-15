@@ -3,7 +3,7 @@ import { query } from '../utils/db';
 
 export async function getAllFeedbacks(_req: Request, res: Response) {
   const result = await query(
-    'SELECT id, content, recipient_id, source, submitted_at, is_moderated FROM feedbacks ORDER BY submitted_at DESC'
+    'SELECT id, content, recipient_id, source, submitted_at, is_moderated, rating FROM feedbacks ORDER BY submitted_at DESC'
   );
   return res.json({ feedbacks: result.rows });
 }

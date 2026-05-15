@@ -20,10 +20,9 @@ function Header({ isAuthenticated = false, onLogout }: HeaderProps) {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <span className="logo-icon">📋</span>
-          <div className="logo-text">
-            <span className="logo-title">SIM Assurances</span>
-            <span className="logo-subtitle">Feedback</span>
+          <img src="/logo.webp" alt="SIM Assurances Logo" style={{ height: '45px', objectFit: 'contain' }} />
+          <div className="logo-text" style={{ marginLeft: '12px', paddingLeft: '12px', borderLeft: '2px solid rgba(255, 255, 255, 0.2)' }}>
+            <span className="logo-title" style={{ fontSize: '1.2rem' }}>Feedback</span>
           </div>
         </Link>
 
@@ -36,9 +35,6 @@ function Header({ isAuthenticated = false, onLogout }: HeaderProps) {
             <>
               <Link to="/login" className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`}>
                 Connexion
-              </Link>
-              <Link to="/register" className="btn btn-green">
-                Inscription
               </Link>
             </>
           )}

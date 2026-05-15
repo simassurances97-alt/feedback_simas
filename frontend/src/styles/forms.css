@@ -19,7 +19,7 @@
   right: -20%;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(0, 200, 150, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(81, 174, 226, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -38,7 +38,7 @@
 
 .form-glass h2 {
   text-align: center;
-  color: var(--color-dark-secondary);
+  color: var(--color-primary-dark);
   font-size: 2rem;
   margin-bottom: 36px;
   font-weight: 800;
@@ -56,14 +56,14 @@
   display: block;
   margin-bottom: 12px;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-primary-dark);
   font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
 .form-group input:focus ~ label,
 .form-group textarea:focus ~ label {
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .form-group input,
@@ -71,25 +71,26 @@
 .form-group select {
   width: 100%;
   padding: 14px 16px;
-  border: 1.5px solid var(--color-border);
+  border: 2px solid rgba(81, 174, 226, 0.5);
   border-radius: 12px;
-  background: rgba(251, 253, 255, 0.8);
+  background: rgba(251, 253, 255, 0.9);
+  color: #0f172a;
   transition: all 0.3s ease;
   font-size: 0.95rem;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #cbd5e1;
+  color: #475569;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
   background: white;
-  box-shadow: 0 0 0 4px rgba(0, 200, 150, 0.1), 0 4px 12px rgba(0, 200, 150, 0.2);
+  box-shadow: 0 0 0 4px rgba(0, 75, 156, 0.1), 0 4px 12px rgba(0, 75, 156, 0.2);
   transform: translateY(-2px);
 }
 
@@ -122,7 +123,7 @@
 /* Submit Button */
 .btn-primary {
   width: 100%;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   padding: 16px 24px;
   border: none;
@@ -131,7 +132,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 200, 150, 0.3);
+  box-shadow: 0 8px 20px rgba(81, 174, 226, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
@@ -140,7 +141,7 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 12px 30px rgba(0, 200, 150, 0.5);
+  box-shadow: 0 12px 30px rgba(81, 174, 226, 0.5);
   transform: translateY(-3px);
 }
 
@@ -178,7 +179,7 @@
 
 .message-info {
   background: rgba(81, 174, 226, 0.1);
-  color: #51AEE2;
+  color: var(--color-secondary);
   border: 1px solid rgba(81, 174, 226, 0.3);
 }
 
@@ -204,14 +205,14 @@
 }
 
 .form-glass a {
-  color: var(--color-accent);
+  color: var(--color-secondary);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .form-glass a:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-primary);
   text-decoration: underline;
 }
 

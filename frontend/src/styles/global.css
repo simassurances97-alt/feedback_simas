@@ -1,6 +1,6 @@
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #0A1628 0%, #1B3A6B 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   padding: 80px 40px;
   text-align: center;
   color: white;
@@ -18,7 +18,7 @@
   right: -20%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(0, 200, 150, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(81, 174, 226, 0.14) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -29,7 +29,7 @@
   left: -10%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(81, 174, 226, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(81, 174, 226, 0.08) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -48,10 +48,17 @@
 }
 
 .hero h1 span {
-  background: linear-gradient(135deg, #00C896 0%, #51AEE2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.highlight-purple {
+  background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .hero p {
@@ -74,7 +81,7 @@
   padding: 32px 28px;
   box-shadow: 0 10px 35px rgba(10, 22, 40, 0.08);
   transition: all 0.3s ease;
-  border: 1px solid rgba(0, 200, 150, 0.05);
+  border: 1px solid rgba(81, 174, 226, 0.08);
   overflow: hidden;
   position: relative;
 }
@@ -89,13 +96,13 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #00C896 0%, #51AEE2 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
 }
 
 .card:hover {
-  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.15);
+  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.18);
   transform: translateY(-8px);
-  border-color: rgba(0, 200, 150, 0.15);
+  border-color: rgba(81, 174, 226, 0.18);
 }
 
 .card-grid {
@@ -106,14 +113,14 @@
 }
 
 .card h3 {
-  color: var(--color-dark-secondary);
+  color: var(--color-primary-dark);
   font-size: 1.5rem;
   margin: 0 0 16px 0;
   font-weight: 700;
 }
 
 .card p {
-  color: var(--color-text-light);
+  color: rgba(15, 23, 42, 0.87);
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
@@ -122,7 +129,7 @@
 .card small {
   display: block;
   margin-top: 16px;
-  color: var(--color-text-lighter);
+  color: #64748b;
   font-size: 0.875rem;
 }
 
@@ -130,17 +137,17 @@
 .form-glass {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 24px;
   padding: 48px;
-  box-shadow: 0 25px 50px rgba(10, 22, 40, 0.15);
+  box-shadow: 0 25px 50px rgba(10, 22, 40, 0.18);
   max-width: 500px;
   margin: 40px auto;
 }
 
 .form-glass h2 {
   text-align: center;
-  color: var(--color-dark-secondary);
+  color: var(--color-primary-dark);
   font-size: 2rem;
   margin-bottom: 36px;
   font-weight: 800;
@@ -174,15 +181,15 @@
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
   background: white;
-  box-shadow: 0 0 0 4px rgba(0, 200, 150, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 75, 156, 0.1);
 }
 
 /* Buttons */
 .btn-primary {
   width: 100%;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   padding: 16px 24px;
   border: none;
@@ -191,18 +198,18 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 200, 150, 0.3);
+  box-shadow: 0 8px 20px rgba(81, 174, 226, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 12px 30px rgba(0, 200, 150, 0.5);
+  box-shadow: 0 12px 30px rgba(81, 174, 226, 0.5);
   transform: translateY(-3px);
 }
 
 .btn-secondary {
-  background: var(--color-primary);
+  background: var(--color-bg-alt);
   color: white;
   padding: 12px 28px;
   border: none;
@@ -211,11 +218,11 @@
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(27, 58, 107, 0.2);
+  box-shadow: 0 4px 15px rgba(10, 22, 40, 0.2);
 }
 
 .btn-secondary:hover {
-  box-shadow: 0 8px 25px rgba(27, 58, 107, 0.4);
+  box-shadow: 0 8px 25px rgba(10, 22, 40, 0.3);
   transform: translateY(-2px);
 }
 
@@ -271,8 +278,58 @@
 
 .message-info {
   background: rgba(81, 174, 226, 0.1);
-  color: #51AEE2;
+  color: var(--color-secondary);
   border: 1px solid rgba(81, 174, 226, 0.3);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Links */
+.form-glass p {
+  text-align: center;
+  margin-top: 24px;
+  color: #64748b;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+}
+
+.form-glass a {
+  color: var(--color-secondary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.form-glass a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-glass {
+    padding: 32px 24px;
+    margin: 24px 16px;
+  }
+
+  .form-glass h2 {
+    font-size: 1.75rem;
+  }
+
+  .btn-primary {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
 }
 
 .site-footer {
@@ -319,7 +376,7 @@
 }
 
 .footer-link:hover {
-  color: #00C896;
+  color: var(--color-secondary);
 }
 
 /* Container */
@@ -340,11 +397,11 @@
 }
 
 .text-accent {
-  color: var(--color-accent);
+  color: var(--color-secondary);
 }
 
 .text-light {
-  color: var(--color-text-light);
+  color: #94a3b8;
 }
 
 @keyframes cardFloat {

@@ -3,7 +3,7 @@ import { query } from '../utils/db';
 
 export async function getPublicFeedbacks(_req: Request, res: Response) {
   const result = await query(
-    `SELECT f.id, f.content, f.source, f.submitted_at, e.name AS recipient_name
+    `SELECT f.id, f.content, f.source, f.submitted_at, f.rating, e.name AS recipient_name
      FROM feedbacks f
      JOIN employees e ON f.recipient_id = e.id
      WHERE f.is_moderated = FALSE AND f.source = $1
@@ -14,7 +14,7 @@ export async function getPublicFeedbacks(_req: Request, res: Response) {
 }
 
 export async function submitFeedback(req: Request, res: Response) {
-  const { recipientId, content } = req.body;
+  const { recipientId, content, rating } = req.body;
   if (!recipientId || !content || content.length < 20 || content.length > 500) {
     return res.status(400).json({ message: 'Recipient and content are required (20-500 chars)' });
   }
@@ -41,8 +41,8 @@ export async function submitFeedback(req: Request, res: Response) {
   }
 
   await query(
-    'INSERT INTO feedbacks(id, content, recipient_id, source, submitted_at, is_moderated) VALUES(gen_random_uuid(), $1, $2, $3, CURRENT_DATE, FALSE)',
-    [content.trim(), recipientId, 'public']
+    'INSERT INTO feedbacks(id, content, recipient_id, source, submitted_at, is_moderated, rating) VALUES(gen_random_uuid(), $1, $2, $3, CURRENT_DATE, FALSE, $4)',
+    [content.trim(), recipientId, 'public', rating || 0]
   );
 
   return res.status(201).json({ message: 'Feedback submitted anonymously' });

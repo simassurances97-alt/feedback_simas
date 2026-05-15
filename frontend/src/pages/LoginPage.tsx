@@ -34,7 +34,7 @@ function LoginPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0A1628 0%, #1B3A6B 50%, #0A1628 100%)' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #004B9C 0%, #51AEE2 50%, #004B9C 100%)' }}>
       <Header />
 
       <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 80px)' }}>
@@ -72,18 +72,12 @@ function LoginPage() {
           </button>
 
           <p style={{ textAlign: 'center', marginTop: '24px', color: '#64748b' }}>
-            Pas encore de compte ? <Link to="/register" style={{ color: '#00C896', fontWeight: 600 }}>Créer un compte</Link>
+            Contactez votre administrateur pour obtenir un compte.
           </p>
         </form>
       </main>
       <Footer />
     </div>
-  );
-}
-
-export default LoginPage;
-
-    </main>
   );
 }
 

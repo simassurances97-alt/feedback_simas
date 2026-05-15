@@ -54,7 +54,7 @@ export async function loginController(req: Request, res: Response) {
 
 export async function registerController(req: Request, res: Response) {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, position } = req.body;
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email and password are required' });
     }
@@ -66,8 +66,8 @@ export async function registerController(req: Request, res: Response) {
 
     const passwordHash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS ?? 12));
     const result = await query(
-      'INSERT INTO employees(name, email, password_hash, role) VALUES($1, $2, $3, $4) RETURNING id',
-      [name.trim(), email.trim().toLowerCase(), passwordHash, 'user']
+      'INSERT INTO employees(name, email, password_hash, role, position) VALUES($1, $2, $3, $4, $5) RETURNING id',
+      [name.trim(), email.trim().toLowerCase(), passwordHash, 'user', position?.trim() || 'Employé']
     );
 
     return res.status(201).json({ message: 'Compte créé', userId: result.rows[0].id });

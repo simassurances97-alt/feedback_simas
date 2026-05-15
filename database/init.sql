@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS employees (
   email VARCHAR(150) UNIQUE NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   role VARCHAR(10) NOT NULL DEFAULT 'user',
+  position VARCHAR(100) DEFAULT 'Employé',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS feedbacks (
   recipient_id UUID REFERENCES employees(id) ON DELETE CASCADE,
   source VARCHAR(20) NOT NULL DEFAULT 'public',
   submitted_at DATE NOT NULL DEFAULT CURRENT_DATE,
-  is_moderated BOOLEAN DEFAULT FALSE
+  is_moderated BOOLEAN DEFAULT FALSE,
+  rating INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS audit_logs (

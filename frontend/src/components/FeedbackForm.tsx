@@ -4,6 +4,7 @@ import api from '../services/api';
 interface EmployeeOption {
   id: string;
   name: string;
+  position: string;
 }
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 function FeedbackForm({ onSubmit }: Props) {
   const [recipientId, setRecipientId] = useState('');
   const [content, setContent] = useState('');
+  const [rating, setRating] = useState(0);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | 'info'>('info');
   const [employees, setEmployees] = useState<EmployeeOption[]>([]);
@@ -20,7 +22,16 @@ function FeedbackForm({ onSubmit }: Props) {
   useEffect(() => {
     api
       .get('/employees')
-      .then((response) => setEmployees(response.data.employees))
+      .then((response) => {
+        const data = response.data.employees as EmployeeOption[];
+        const entreprise = data.find(e => e.email === 'entreprise@sim-assurances.ci' || e.name.toLowerCase().includes('entreprise'));
+        if (entreprise) {
+          const others = data.filter(e => e.id !== entreprise.id);
+          setEmployees([entreprise, ...others]);
+        } else {
+          setEmployees(data);
+        }
+      })
       .catch(() => setEmployees([]));
   }, []);
 
@@ -29,7 +40,7 @@ function FeedbackForm({ onSubmit }: Props) {
 
     // Validation côté client
     if (content.length < 20 || content.length > 500) {
-      setMessage('Le commentaire doit contenir entre 20 et 500 caractères.');
+      setMessage('La critique doit contenir entre 20 et 500 caractères.');
       setMessageType('error');
       return;
     }
@@ -43,11 +54,12 @@ function FeedbackForm({ onSubmit }: Props) {
     }
 
     try {
-      await api.post('/feedbacks/submit', { recipientId, content });
+      await api.post('/feedbacks/submit', { recipientId, content, rating });
       setMessage('✓ Feedback envoyé avec succès ! Merci pour votre retour.');
       setMessageType('success');
       setContent('');
       setRecipientId('');
+      setRating(0);
       setTimeout(onSubmit, 1000);
     } catch (error) {
       setMessage('Erreur lors de la soumission. Veuillez réessayer.');
@@ -60,7 +72,7 @@ function FeedbackForm({ onSubmit }: Props) {
       {message && <p className={`message message-${messageType}`}>{message}</p>}
 
       <div className="form-group">
-        <label htmlFor="recipient">À qui adresser ce commentaire ?</label>
+        <label htmlFor="recipient">À qui adresser cette critique ?</label>
         <select 
           id="recipient"
           value={recipientId} 
@@ -70,14 +82,29 @@ function FeedbackForm({ onSubmit }: Props) {
           <option value="">Sélectionnez un employé</option>
           {employees.map((employee) => (
             <option key={employee.id} value={employee.id}>
-              {employee.name}
+              {employee.name} - {employee.position || 'Employé'}
             </option>
           ))}
         </select>
       </div>
 
       <div className="form-group">
-        <label htmlFor="content">Votre commentaire constructif</label>
+        <label>Note de satisfaction</label>
+        <div style={{ display: 'flex', gap: '8px', fontSize: '2rem', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span 
+              key={star} 
+              onClick={() => setRating(star)}
+              style={{ color: star <= rating ? '#FF9500' : '#cbd5e1' }}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="content">Votre critique constructive</label>
         <textarea
           id="content"
           value={content}
@@ -96,11 +123,6 @@ function FeedbackForm({ onSubmit }: Props) {
         Envoyer mon avis
       </button>
     </form>
-  );
-}
-
-export default FeedbackForm;
-
   );
 }
 

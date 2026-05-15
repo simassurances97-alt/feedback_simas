@@ -3,6 +3,7 @@ interface Feedback {
   content: string;
   submitted_at: string;
   recipient_name?: string;
+  rating?: number;
 }
 
 interface FeedbackListProps {
@@ -13,7 +14,7 @@ function FeedbackList({ feedbacks }: FeedbackListProps) {
   if (feedbacks.length === 0) {
     return (
       <div className="card" style={{ textAlign: 'center', padding: '48px' }}>
-        <p style={{ fontSize: '1.1rem', color: '#94a3b8' }}>Aucun commentaire pour le moment.</p>
+        <p style={{ fontSize: '1.1rem', color: '#94a3b8' }}>Aucune critique pour le moment.</p>
       </div>
     );
   }
@@ -26,10 +27,15 @@ function FeedbackList({ feedbacks }: FeedbackListProps) {
             <p style={{ color: '#0f172a', fontSize: '1rem', lineHeight: '1.6', margin: '0 0 16px 0', minHeight: '80px' }}>
               "{item.content}"
             </p>
+            {item.rating && item.rating > 0 ? (
+              <div style={{ color: '#FF9500', fontSize: '1.2rem', marginBottom: '10px' }}>
+                {'★'.repeat(item.rating)}{'☆'.repeat(5 - item.rating)}
+              </div>
+            ) : null}
           </div>
           <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '16px', marginTop: 'auto' }}>
             {item.recipient_name && (
-              <small style={{ color: '#00C896', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+              <small style={{ color: '#51AEE2', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
                 ✓ Pour {item.recipient_name}
               </small>
             )}

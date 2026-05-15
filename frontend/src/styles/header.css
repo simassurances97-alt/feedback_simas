@@ -1,10 +1,10 @@
 .header {
-  background: linear-gradient(135deg, #0A1628 0%, #1B3A6B 100%);
-  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.3);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, rgba(81, 174, 226, 0.92) 100%);
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.18);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(0, 200, 150, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .header-container {
@@ -48,7 +48,7 @@
 
 .logo-subtitle {
   font-size: 0.75rem;
-  color: #00C896;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -61,32 +61,27 @@
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
-  position: relative;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: transparent;
 }
 
 .nav-link:hover {
-  color: #00C896;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .nav-link.active {
-  color: #00C896;
-  font-weight: 600;
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #00C896;
-  border-radius: 1px;
+  color: #004B9C;
+  background: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn {
@@ -102,27 +97,27 @@
 }
 
 .btn-green {
-  background: linear-gradient(135deg, #00C896 0%, #009B6E 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 200, 150, 0.3);
+  box-shadow: 0 4px 15px rgba(81, 174, 226, 0.3);
 }
 
 .btn-green:hover {
-  box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
+  box-shadow: 0 6px 20px rgba(81, 174, 226, 0.5);
   transform: translateY(-2px);
 }
 
 .btn-logout {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.18);
   color: white;
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
 }
 
 .btn-logout:hover {
-  background: rgba(255, 59, 48, 0.15);
-  border-color: #FF3B30;
-  color: #FF3B30;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: white;
+  color: white;
 }
 
 @media (max-width: 768px) {
