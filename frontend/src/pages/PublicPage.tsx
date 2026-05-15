@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import FeedbackForm from '../components/FeedbackForm';
 import FeedbackList from '../components/FeedbackList';
 import api from '../services/api';
@@ -69,6 +70,7 @@ function PublicPage() {
           )}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import api from '../services/api';
 
 function RegisterPage() {
@@ -85,6 +86,7 @@ function RegisterPage() {
           </p>
         </form>
       </main>
+      <Footer />
     </div>
   );
 }

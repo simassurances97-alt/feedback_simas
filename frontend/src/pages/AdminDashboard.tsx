@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import api, { setAuthToken } from '../services/api';
 
 function AdminDashboard() {
@@ -171,6 +172,7 @@ function AdminDashboard() {
           )}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
