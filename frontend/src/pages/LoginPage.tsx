@@ -37,7 +37,7 @@ function LoginPage() {
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #004B9C 0%, #51AEE2 50%, #004B9C 100%)' }}>
       <Header />
 
-      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 80px)' }}>
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: '0 clamp(12px, 4vw, 40px)' }}>
         <form onSubmit={handleSubmit} className="form-glass" style={{ maxWidth: '450px' }}>
           <h2>Connexion</h2>
 

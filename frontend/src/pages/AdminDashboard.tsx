@@ -89,7 +89,7 @@ function AdminDashboard() {
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #004B9C 0%, #51AEE2 50%, #004B9C 100%)' }}>
       <Header isAuthenticated={true} onLogout={handleLogout} />
 
-      <main>
+      <main style={{ padding: '0 clamp(12px, 4vw, 40px)' }}>
         {/* Hero Section */}
         <section className="hero" style={{ marginBottom: '50px' }}>
           <div className="hero-content">
@@ -121,7 +121,7 @@ function AdminDashboard() {
           <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px', textAlign: 'center' }}>Ajouter un employé</h2>
           <form onSubmit={handleRegister} className="form-glass" style={{ margin: '0', maxWidth: '100%' }}>
             {registerMessage && <p className={`message message-${registerMessageType}`}>{registerMessage}</p>}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+            <div className="admin-form-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
               <div className="form-group" style={{ marginBottom: '0' }}>
                 <label htmlFor="name">Nom complet</label>
                 <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} required />

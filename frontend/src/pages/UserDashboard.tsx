@@ -34,7 +34,7 @@ function UserDashboard() {
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #004B9C 0%, #51AEE2 50%, #004B9C 100%)' }}>
       <Header isAuthenticated={true} onLogout={handleLogout} />
 
-      <main>
+      <main style={{ padding: '0 clamp(12px, 4vw, 40px)' }}>
         {/* Hero Section */}
         <section className="hero" style={{ marginBottom: '50px' }}>
           <div className="hero-content">

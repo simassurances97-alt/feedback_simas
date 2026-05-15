@@ -31,7 +31,7 @@ function PublicPage() {
         window.location.reload();
       }} />
 
-      <main>
+      <main style={{ padding: '0 clamp(12px, 4vw, 40px)' }}>
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-content">

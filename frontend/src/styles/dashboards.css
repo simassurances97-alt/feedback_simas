@@ -1,4 +1,8 @@
-/* Admin Dashboard Styles */
+/* ==========================================
+   DASHBOARD CSS — RESPONSIVE
+   ========================================== */
+
+/* ========== ADMIN STATS CARD ========== */
 .admin-stats-card {
   background: white;
   border-radius: 20px;
@@ -30,7 +34,7 @@
   color: var(--color-primary);
 }
 
-/* Feedback Item */
+/* ========== FEEDBACK ITEM ========== */
 .feedback-item {
   background: white;
   border-radius: 20px;
@@ -100,6 +104,7 @@
   border-top: 1px solid #e2e8f0;
   padding-top: 16px;
   margin-top: 16px;
+  flex-wrap: wrap;
 }
 
 .feedback-action-btn {
@@ -135,7 +140,7 @@
   background: rgba(255, 59, 48, 0.1);
 }
 
-/* User Dashboard */
+/* ========== USER DASHBOARD ========== */
 .user-stats {
   background: white;
   border-radius: 20px;
@@ -158,8 +163,15 @@
   margin: 0;
 }
 
-/* Responsive */
+/* ==========================================
+   RESPONSIVE — TABLETTE (768px)
+   ========================================== */
 @media (max-width: 768px) {
+  .feedback-item {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
   .feedback-meta {
     flex-direction: column;
     gap: 8px;
@@ -167,13 +179,67 @@
 
   .feedback-actions {
     flex-direction: column;
+    gap: 8px;
   }
 
   .feedback-action-btn {
     width: 100%;
+    text-align: center;
+    padding: 10px 16px;
+  }
+
+  .admin-stats-card {
+    padding: 24px 20px;
+    border-radius: 14px;
   }
 
   .admin-stats-card .value {
     font-size: 2rem;
+  }
+
+  .user-stats {
+    padding: 28px 20px;
+    margin-bottom: 32px;
+    border-radius: 14px;
+  }
+
+  .user-stats .value {
+    font-size: 2rem;
+  }
+
+  /* Admin form grid → colonne unique */
+  .admin-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE (480px)
+   ========================================== */
+@media (max-width: 480px) {
+  .feedback-item {
+    padding: 16px 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .feedback-content {
+    font-size: 0.95rem;
+  }
+
+  .admin-stats-card {
+    padding: 20px 16px;
+  }
+
+  .admin-stats-card .value {
+    font-size: 1.8rem;
+  }
+
+  .user-stats {
+    padding: 24px 16px;
+  }
+
+  .user-stats .value {
+    font-size: 1.8rem;
   }
 }
