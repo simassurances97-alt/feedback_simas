@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import api, { setAuthToken } from '../services/api';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    setIsLoading(true);
+    setError('');
+
     try {
       const response = await api.post('/auth/login', { email, password });
       const { token, role } = response.data;
@@ -21,63 +26,61 @@ function LoginPage() {
         navigate('/user/me');
       }
     } catch (err) {
-      setError('Identifiants invalides');
+      setError('Email ou mot de passe incorrect.');
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
-    <main style={{ padding: 20 }}>
-      <nav style={{ marginBottom: '2rem', padding: '1rem', borderBottom: '1px solid #e5e7eb' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to="/" style={{ textDecoration: 'none', color: '#004B9C', fontWeight: 'bold' }}>
-            SIM Assurances - Feedback
-          </Link>
-          <div>
-            <Link
-              to="/"
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#f3f4f6',
-                color: '#004B9C',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                marginRight: '0.5rem'
-              }}
-            >
-              Accueil
-            </Link>
-            <Link
-              to="/register"
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#51AEE2',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px'
-              }}
-            >
-              Inscription
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0A1628 0%, #1B3A6B 50%, #0A1628 100%)' }}>
+      <Header />
 
-      <h1>Connexion employé</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Mot de passe</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Se connecter</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
-      <p>
-        Pas encore de compte ? <Link to="/register">Inscription</Link>
-      </p>
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 80px)' }}>
+        <form onSubmit={handleSubmit} className="form-glass" style={{ maxWidth: '450px' }}>
+          <h2>Connexion Employé</h2>
+
+          {error && <p className="message message-error">{error}</p>}
+
+          <div className="form-group">
+            <label htmlFor="email">Adresse email</label>
+            <input 
+              id="email"
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+              placeholder="votre.email@simasurances.com"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <input 
+              id="password"
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+              placeholder="••••••••"
+            />
+          </div>
+
+          <button type="submit" className="btn-primary" disabled={isLoading}>
+            {isLoading ? 'Connexion en cours...' : 'Se connecter'}
+          </button>
+
+          <p style={{ textAlign: 'center', marginTop: '24px', color: '#64748b' }}>
+            Pas encore de compte ? <Link to="/register" style={{ color: '#00C896', fontWeight: 600 }}>Créer un compte</Link>
+          </p>
+        </form>
+      </main>
+    </div>
+  );
+}
+
+export default LoginPage;
+
     </main>
   );
 }

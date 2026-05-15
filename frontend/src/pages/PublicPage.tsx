@@ -1,58 +1,77 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import FeedbackForm from '../components/FeedbackForm';
 import FeedbackList from '../components/FeedbackList';
 import api from '../services/api';
 
 function PublicPage() {
   const [feedbacks, setFeedbacks] = useState<Array<{ id: string; content: string; submitted_at: string; recipient_name: string }>>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/feedbacks/public').then((response) => setFeedbacks(response.data.feedbacks)).catch(console.error);
   }, []);
 
   return (
-    <main>
-      <nav style={{ marginBottom: '2rem', padding: '1rem', borderBottom: '1px solid #e5e7eb' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1 style={{ margin: 0, color: '#004B9C' }}>SIM Assurances - Feedback</h1>
-          <div>
-            <Link
-              to="/login"
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#004B9C',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                marginRight: '0.5rem'
-              }}
-            >
-              Connexion employé
-            </Link>
-            <Link
-              to="/register"
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#51AEE2',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px'
-              }}
-            >
-              Inscription
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0A1628 0%, #1B3A6B 50%, #0A1628 100%)' }}>
+      <Header />
 
-      <h1>Feedback anonyme public</h1>
-      <p>Soumettez un avis constructif sans inscription.</p>
-      <FeedbackForm onSubmit={() => window.location.reload()} />
-      <h2>Commentaires publics</h2>
-      <FeedbackList feedbacks={feedbacks} />
-    </main>
+      <main>
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero-content">
+            <h1>Partagez vos <span>commentaires</span> en confiance</h1>
+            <p>Donnez votre avis de manière anonyme et constructive pour aider vos collègues à s'améliorer</p>
+            <button onClick={() => document.querySelector('form')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary">
+              Laisser un commentaire
+            </button>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="card-grid">
+          <div className="card">
+            <h3>🔒 Anonyme</h3>
+            <p>Vos commentaires sont complètement anonymes. Aucune information personnelle n'est collectée.</p>
+          </div>
+          <div className="card">
+            <h3>✨ Constructif</h3>
+            <p>Partagez un retour honnête et bienveillant pour favoriser le développement personnel.</p>
+          </div>
+          <div className="card">
+            <h3>🛡️ Sécurisé</h3>
+            <p>Vos données sont protégées et traitées de manière confidentielle par notre équipe.</p>
+          </div>
+        </section>
+
+        {/* Feedback Form */}
+        <section>
+          <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+            <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800 }}>Soumettre un feedback</h2>
+            <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.1rem' }}>Remplissez le formulaire ci-dessous pour partager votre avis</p>
+          </div>
+          <FeedbackForm onSubmit={() => window.location.reload()} />
+        </section>
+
+        {/* Comments Section */}
+        <section>
+          <div style={{ marginBottom: '40px' }}>
+            <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Commentaires récents</h2>
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', margin: 0 }}>Découvrez les retours positifs de notre communauté</p>
+          </div>
+          {feedbacks.length === 0 ? (
+            <div className="card" style={{ textAlign: 'center', padding: '48px' }}>
+              <p style={{ fontSize: '1.1rem', color: '#94a3b8' }}>Aucun commentaire pour le moment. Soyez le premier à partager votre avis !</p>
+            </div>
+          ) : (
+            <FeedbackList feedbacks={feedbacks} />
+          )}
+        </section>
+      </main>
+    </div>
   );
 }
 
 export default PublicPage;
+

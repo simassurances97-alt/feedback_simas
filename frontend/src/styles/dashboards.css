@@ -1,0 +1,178 @@
+/* Admin Dashboard Styles */
+.admin-stats-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(10, 22, 40, 0.08);
+  border: 1px solid rgba(0, 200, 150, 0.05);
+  transition: all 0.3s ease;
+}
+
+.admin-stats-card:hover {
+  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.15);
+  transform: translateY(-8px);
+}
+
+.admin-stats-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.admin-stats-card .value {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+/* Feedback Item */
+.feedback-item {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 35px rgba(10, 22, 40, 0.08);
+  border: 1px solid rgba(0, 200, 150, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid;
+}
+
+.feedback-item.moderated {
+  border-left-color: #34C759;
+}
+
+.feedback-item.not-moderated {
+  border-left-color: #FF9500;
+}
+
+.feedback-item:hover {
+  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.15);
+  transform: translateY(-4px);
+}
+
+.feedback-content {
+  color: #0f172a;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.feedback-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.feedback-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.feedback-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.feedback-status.moderated {
+  background: rgba(52, 199, 89, 0.1);
+  color: #34C759;
+}
+
+.feedback-status.not-moderated {
+  background: rgba(255, 149, 0, 0.1);
+  color: #FF9500;
+}
+
+.feedback-actions {
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.feedback-action-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.feedback-action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.feedback-action-moderate {
+  border-color: #34C759;
+  color: #34C759;
+}
+
+.feedback-action-moderate:hover {
+  background: rgba(52, 199, 89, 0.1);
+}
+
+.feedback-action-delete {
+  border-color: #FF3B30;
+  color: #FF3B30;
+}
+
+.feedback-action-delete:hover {
+  background: rgba(255, 59, 48, 0.1);
+}
+
+/* User Dashboard */
+.user-stats {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(10, 22, 40, 0.08);
+  border: 1px solid rgba(0, 200, 150, 0.05);
+  margin-bottom: 50px;
+}
+
+.user-stats h3 {
+  margin: 0 0 10px 0;
+  color: #00C896;
+}
+
+.user-stats .value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0A1628;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feedback-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feedback-actions {
+    flex-direction: column;
+  }
+
+  .feedback-action-btn {
+    width: 100%;
+  }
+
+  .admin-stats-card .value {
+    font-size: 2rem;
+  }
+}
