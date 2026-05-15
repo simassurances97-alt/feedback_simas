@@ -12,7 +12,16 @@ function PublicPage() {
   const isAuthenticated = !!localStorage.getItem('feedback_token');
 
   useEffect(() => {
-    api.get('/feedbacks/public').then((response) => setFeedbacks(response.data.feedbacks)).catch(console.error);
+    api.get('/feedbacks/public')
+      .then((response) => {
+        // Afficher uniquement les feedbacks adressés à l'entreprise
+        const all = response.data.feedbacks as Array<{ id: string; content: string; submitted_at: string; recipient_name: string; rating?: number }>;
+        const entrepriseFeedbacks = all.filter((f) =>
+          f.recipient_name?.toLowerCase().includes('entreprise')
+        );
+        setFeedbacks(entrepriseFeedbacks);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -61,9 +70,9 @@ function PublicPage() {
 
         {/* Comments Section */}
         <section>
-          <div style={{ marginBottom: '40px' }}>
-            <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Critiques récentes</h2>
-            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', margin: 0 }}>Découvrez les retours positifs de notre communauté</p>
+          <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+            <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Critiques sur l'entreprise</h2>
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', margin: 0 }}>Découvrez ce que nos collaborateurs pensent de SIM Assurances</p>
           </div>
           {feedbacks.length === 0 ? (
             <div className="card" style={{ textAlign: 'center', padding: '48px' }}>

@@ -118,7 +118,7 @@ function AdminDashboard() {
 
         {/* Ajouter un employé Section */}
         <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Ajouter un employé</h2>
+          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px', textAlign: 'center' }}>Ajouter un employé</h2>
           <form onSubmit={handleRegister} className="form-glass" style={{ margin: '0', maxWidth: '100%' }}>
             {registerMessage && <p className={`message message-${registerMessageType}`}>{registerMessage}</p>}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -139,7 +139,7 @@ function AdminDashboard() {
                 <input id="position" type="text" value={position} onChange={(e) => setPosition(e.target.value)} placeholder="Optionnel" />
               </div>
             </div>
-            <button type="submit" className="btn-primary" disabled={isRegistering} style={{ marginTop: '20px', width: 'auto' }}>
+            <button type="submit" className="btn-primary" disabled={isRegistering} style={{ marginTop: '20px', width: 'auto', display: 'block', margin: '20px auto 0' }}>
               {isRegistering ? 'Ajout...' : 'Ajouter l\'employé'}
             </button>
           </form>
@@ -147,8 +147,8 @@ function AdminDashboard() {
 
         {/* Feedbacks List */}
         <section>
-          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Toutes les critiques</h2>
-          <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', marginBottom: '30px' }}>
+          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px', textAlign: 'center' }}>Toutes les critiques</h2>
+          <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', marginBottom: '30px', textAlign: 'center' }}>
             {isLoading ? 'Chargement...' : `${feedbacks.length} critique(s) à modérer`}
           </p>
 

@@ -56,8 +56,8 @@ function UserDashboard() {
 
         {/* Feedbacks List */}
         <section>
-          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>Mes critiques</h2>
-          <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', marginBottom: '30px' }}>
+          <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: 800, marginBottom: '10px', textAlign: 'center' }}>Mes critiques</h2>
+          <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', marginBottom: '30px', textAlign: 'center' }}>
             Seuls les retours qui vous sont destinés s'affichent, sans information sur l'auteur
           </p>
 

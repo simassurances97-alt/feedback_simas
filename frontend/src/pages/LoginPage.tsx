@@ -39,7 +39,7 @@ function LoginPage() {
 
       <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 80px)' }}>
         <form onSubmit={handleSubmit} className="form-glass" style={{ maxWidth: '450px' }}>
-          <h2>Connexion Employé</h2>
+          <h2>Connexion</h2>
 
           {error && <p className="message message-error">{error}</p>}
 

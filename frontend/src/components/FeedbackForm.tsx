@@ -89,21 +89,6 @@ function FeedbackForm({ onSubmit }: Props) {
       </div>
 
       <div className="form-group">
-        <label>Note de satisfaction</label>
-        <div style={{ display: 'flex', gap: '8px', fontSize: '2rem', cursor: 'pointer' }}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span 
-              key={star} 
-              onClick={() => setRating(star)}
-              style={{ color: star <= rating ? '#FF9500' : '#cbd5e1' }}
-            >
-              ★
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="form-group">
         <label htmlFor="content">Votre critique constructive</label>
         <textarea
           id="content"
@@ -117,6 +102,21 @@ function FeedbackForm({ onSubmit }: Props) {
         <small style={{ display: 'block', marginTop: '8px', color: content.length < 20 || content.length > 500 ? '#FF3B30' : '#64748b' }}>
           {content.length}/500 caractères (minimum 20)
         </small>
+      </div>
+
+      <div className="form-group">
+        <label>Note de satisfaction</label>
+        <div style={{ display: 'flex', gap: '8px', fontSize: '2rem', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span 
+              key={star} 
+              onClick={() => setRating(star)}
+              style={{ color: star <= rating ? '#FF9500' : '#cbd5e1' }}
+            >
+              ★
+            </span>
+          ))}
+        </div>
       </div>
 
       <button type="submit" className="btn-primary">
